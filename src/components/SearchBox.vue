@@ -1,7 +1,9 @@
 <template>
   
 <div >
-  <input class="search-bar" type="text" placeholder="search...">  
+  <input class="search-bar" type="text" placeholder="search..."
+  v-model="city" @keyup.enter="$emit('search',city)">
+  
 </div>
   
 </template>
@@ -10,7 +12,14 @@
 export default {
   name: 'SearchBox',
   
+  data() {
+    return {
+      city: '',
+     
+    }
+  },
   
+
 }
 </script>
 
@@ -23,7 +32,6 @@ export default {
   width: 75%;
   padding: 15px;
   margin-bottom: 30px;
-  
   color: #313131;
   font-size: 20px;
   appearance: none;

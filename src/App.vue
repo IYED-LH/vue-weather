@@ -1,7 +1,7 @@
 <template>
   <main>
 
- <SearchBox/>
+ <SearchBox @search="fetchWeather"/>
  <WeatherBox/>
   
   </main>
@@ -22,16 +22,29 @@ export default {
   
   data() {
     return {
-      api_key: 'cced478c6c43ec001db0af42549b8e28'
+      api_key: 'cced478c6c43ec001db0af42549b8e28',
+      api_url: 'https://api.openweathermap.org/data/2.5/weather',
     }
-  }
+  },
   
-}
+  methods:{
+    fetchWeather(city){
+    
+        alert(city);
+      
+      
+       
+       }
+      }
+    }
+    
+  
+
 
 </script>
 
 <style>
-@import url('http://fonts.cdnfonts.com/css/montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
 * {
   margin: 0;
@@ -39,7 +52,7 @@ export default {
   box-sizing: border-box;
 }
 body {
-  font-family: 'montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 #app {
   background-image: url('./assets/summerbg.jpg');

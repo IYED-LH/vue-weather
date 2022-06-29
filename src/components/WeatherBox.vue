@@ -10,7 +10,7 @@
 <div class="weather-box">
     <div class="temp">25<span class="cel">°C</span>
     
-    <div class="weather"> Partly Cloudy </div>
+    <div class="weather-condition"><i class="fa-solid fa-cloud-rain"></i></div>
     </div>
       
 </div>
@@ -45,39 +45,28 @@ export default {
 }
 .weather-box {
   text-align: center;
-  
-  
+   
 }
 .temp {
-  display: inline-block;
   color: #FFF;
-  padding: 50px;
-  
+  font-family: 'poppins', sans-serif;
   font-size: 98px;
-  font-weight: 700;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color:rgba(255, 255, 255, 0.25);
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  margin: 30px 0px;
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  border-radius: 50%; 
+  text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
+
 }
-.temp .cel{
+ .cel{
   position: relative;
-  font-size: 60px;
-  font-weight: 700;
-  bottom: 50px;
-  
-}
-.weather-box .weather {
   color: #FFF;
-  font-size: 48px;
-  font-weight: 700;
-  font-style: italic;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  font-family: 'poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  bottom: 60px; 
 }
-
-
+.weather-box .weather-condition {
+  color: #FFF;
+  font-size: 50px;  
+}
 
 </style>
