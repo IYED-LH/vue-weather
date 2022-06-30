@@ -1,8 +1,7 @@
 <template>
   <main>
-
- 
- <WeatherBox/>
+  
+ <WeatherBox ref="weatherBox"/>
   
   </main>
 </template>
@@ -16,7 +15,11 @@ export default {
   name: 'App',
   components: {
     WeatherBox,
-  }
+  },
+
+   
+  
+  
   
 }
 </script>

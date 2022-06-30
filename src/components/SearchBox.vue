@@ -13,6 +13,7 @@ export default {
   name: 'SearchBox',
   
   
+  
   data() {
     return {
       city: '',

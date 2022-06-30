@@ -2,16 +2,16 @@
 
 <SearchBox @search="fetchWeather"/> 
 
-<div class="weather-wrap"> 
+<div class="weather-wrap" v-if="typeof weather.main != 'undefined'"> 
   
   <div class="weather-location">
-    <div class="location-name">{{weather.name}}</div>
+    <div class="location-name">{{weather.name}}, {{weather.sys.country}}</div>
     <div class="location-date">Wednesday, June 29, 2022</div>
   </div>
 
 
 <div class="weather-box">
-    <div class="temp">{{weather.temp}}<span class="cel">°C</span>
+    <div class="temp">{{Math.round(weather.main.temp)}}<span class="cel">°C</span>
     
     <div class="weather-condition"><i class="fa-solid fa-cloud-rain"></i></div>
     </div>
@@ -42,10 +42,8 @@ export default {
       api_geo: 'http://api.openweathermap.org/geo/1.0/direct',
       
       weather : {
-        name: 'Tunisia',
-        temp: '0',
-        condition: '',
         
+    
       },
       }
 
@@ -54,11 +52,23 @@ export default {
   methods:{
 
    async fetchWeather(city){
-    await  axios.get(`${this.api_weather}?q=${city}&appid=${this.api_key}`)
-      .then(response => {
-        this.weather = response.data;})
-       }
-      }
+      try{
+        const response = await  axios.get(`${this.api_weather}?q=${city}&mode=json&units=metric&appid=${this.api_key}`)
+ 
+          this.weather = response.data;}
+       
+        catch(error){
+          alert('City not found');
+        }
+        
+      },
+  },
+
+created() {
+    this.fetchWeather('tunis');
+  },
+ 
+
  }
 
 
