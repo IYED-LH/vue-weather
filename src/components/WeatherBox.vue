@@ -41,10 +41,7 @@ export default {
       api_weather: 'https://api.openweathermap.org/data/2.5/weather',
       api_geo: 'http://api.openweathermap.org/geo/1.0/direct',
       
-      weather : {
-        
-    
-      },
+      weather : {},
       }
 
     },
@@ -53,9 +50,16 @@ export default {
 
    async fetchWeather(city){
       try{
-        const response = await  axios.get(`${this.api_weather}?q=${city}&mode=json&units=metric&appid=${this.api_key}`)
- 
-          this.weather = response.data;}
+        const response_geo = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=0d8595e3f9903e75e997a04c355182d4`);
+
+        const city_name = response_geo.data[0].name;
+        const lat = response_geo.data[0].lat;
+        const lon = response_geo.data[0].lon;
+        
+        const response_weather = await axios.get(`${this.api_weather}?lat=${lat}&lon=${lon}&units=metric&appid=${this.api_key}`);
+        
+        this.weather = response_weather.data;
+        this.weather.name = city_name;}
        
         catch(error){
           alert('City not found');
