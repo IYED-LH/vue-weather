@@ -1,5 +1,5 @@
 <template>
-  
+
 <div >
   <input class="search-bar" type="text" placeholder="search..."
   v-model="city" @keyup.enter="$emit('search',city)">
@@ -12,12 +12,14 @@
 export default {
   name: 'SearchBox',
   
+  
   data() {
     return {
       city: '',
      
     }
   },
+  emits: ['search'],
   
 
 }

@@ -1,14 +1,17 @@
 <template>
+
+<SearchBox @search="fetchWeather"/> 
+
 <div class="weather-wrap"> 
   
   <div class="weather-location">
-    <div class="location-name">Tunis, Tunisia</div>
+    <div class="location-name">{{weather.name}}</div>
     <div class="location-date">Wednesday, June 29, 2022</div>
   </div>
 
 
 <div class="weather-box">
-    <div class="temp">25<span class="cel">°C</span>
+    <div class="temp">{{weather.temp}}<span class="cel">°C</span>
     
     <div class="weather-condition"><i class="fa-solid fa-cloud-rain"></i></div>
     </div>
@@ -21,10 +24,45 @@
 </template>
 
 <script>
+
+import SearchBox from './SearchBox.vue'
+const axios = require('axios').default;
+
 export default {
-  name: 'SearchBox',
-  
-}
+  name: 'weatherBox',
+  components: {
+    SearchBox,
+  },
+    
+  data() {
+
+    return {
+      api_key: '0d8595e3f9903e75e997a04c355182d4',
+      api_weather: 'https://api.openweathermap.org/data/2.5/weather',
+      api_geo: 'http://api.openweathermap.org/geo/1.0/direct',
+      
+      weather : {
+        name: 'Tunisia',
+        temp: '0',
+        condition: '',
+        
+      },
+      }
+
+    },
+    
+  methods:{
+
+   async fetchWeather(city){
+    await  axios.get(`${this.api_weather}?q=${city}&appid=${this.api_key}`)
+      .then(response => {
+        this.weather = response.data;})
+       }
+      }
+ }
+
+
+
 </script>
 
 <style scoped> 

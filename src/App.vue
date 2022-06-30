@@ -1,7 +1,7 @@
 <template>
   <main>
 
- <SearchBox @search="fetchWeather"/>
+ 
  <WeatherBox/>
   
   </main>
@@ -9,38 +9,16 @@
 
 <script>
 
-import SearchBox from './components/SearchBox.vue'
+
 import WeatherBox from './components/WeatherBox.vue' 
 
 export default {
   name: 'App',
   components: {
-    SearchBox,
     WeatherBox,
-  },
+  }
   
-  
-  data() {
-    return {
-      api_key: 'cced478c6c43ec001db0af42549b8e28',
-      api_url: 'https://api.openweathermap.org/data/2.5/weather',
-    }
-  },
-  
-  methods:{
-    fetchWeather(city){
-    
-        alert(city);
-      
-      
-       
-       }
-      }
-    }
-    
-  
-
-
+}
 </script>
 
 <style>
