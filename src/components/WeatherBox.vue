@@ -6,14 +6,15 @@
   
   <div class="weather-location" >
     <div class="location-name">{{weather.name}}, {{weather.sys.country}}</div>
-    <div class="location-date">Wednesday, June 29, 2022</div>
+    <div class="location-date">{{time}}</div>
+
   </div>
 
 
 <div class="weather-box">
     <div class="temp">{{Math.round(weather.main.temp)}}<span class="cel">°C</span>
     
-    <div class="weather-condition"><i class="fa-solid fa-cloud-rain"></i></div>
+    <div class="weather-condition "><i class="fa-solid fa-cloud-rain"></i></div>
     </div>
       
 </div>
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+import 'animate.css';
 
 import SearchBox from './SearchBox.vue'
 const axios = require('axios').default;
@@ -39,45 +41,50 @@ export default {
     return {
       api_key: '0d8595e3f9903e75e997a04c355182d4',
       api_weather: 'https://api.openweathermap.org/data/2.5/weather',
-      api_geo: 'http://api.openweathermap.org/geo/1.0/direct',
+      api_geo: 'https://api.openweathermap.org/geo/1.0/direct',
+      api_time: 'https://api.timezonedb.com/v2.1/get-time-zone?key=N5YE68JUEOQX&format=json&by=position&lat=',
       
       weather : {},
+      time:'',
+    
       }
-
+      
     },
     
   methods:{
 
    async fetchWeather(city){
       try{
-        const response_geo = await axios.get(`${this.api_geo}?q=${city}&appid=0d8595e3f9903e75e997a04c355182d4`);
+        const response_geo = await axios.get(`${this.api_geo}?q=${city}&appid=${this.api_key}`);
 
         const city_name = response_geo.data[0].name;
-        const lat = response_geo.data[0].lat;
-        const lon = response_geo.data[0].lon;
+        let lat = response_geo.data[0].lat;
+        let lon = response_geo.data[0].lon;
         
         const response_weather = await axios.get(`${this.api_weather}?lat=${lat}&lon=${lon}&units=metric&appid=${this.api_key}`);
         
         this.weather = response_weather.data;
-        this.weather.name = city_name;}
-       
+        this.weather.name = city_name;
+
+        const response_time = await axios.get(`${this.api_time}${lat}&lng=${lon}`);
+        this.time = response_time.data.formatted}
+
         catch(error){
           alert('City not found');
-        }
+        } 
+        
         this.$emit('weatherdata', this.weather);
         
       },
   },
 
-created() {
+mounted() {
     this.fetchWeather('tunis');
   },
- 
 
+  emits: ['weatherdata'],
  }
-
-
-
+ 
 </script>
 
 <style scoped> 

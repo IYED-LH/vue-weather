@@ -13,8 +13,7 @@
 </template>
 
 <script>
-
-
+import 'animate.css';
 import WeatherBox from './components/WeatherBox.vue' 
 
 export default {
@@ -38,6 +37,7 @@ export default {
 </script>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
 
 * {
@@ -52,8 +52,9 @@ body {
   background-image: url('./assets/summerbg.jpg');
   background-size: cover;
   background-position: bottom;
-  transition: 0.4s;
+  transition: 0.5s ease;
 }
+
 #app.warm {
   background-image: url('./assets/winterbg.jpg');
 }
