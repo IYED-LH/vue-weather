@@ -4,7 +4,7 @@
 
 <div class="weather-wrap" v-if="typeof weather.main != 'undefined'"> 
   
-  <div class="weather-location">
+  <div class="weather-location" >
     <div class="location-name">{{weather.name}}, {{weather.sys.country}}</div>
     <div class="location-date">Wednesday, June 29, 2022</div>
   </div>
@@ -20,7 +20,7 @@
   
 </div>
 
-    
+
 </template>
 
 <script>
@@ -64,6 +64,7 @@ export default {
         catch(error){
           alert('City not found');
         }
+        this.$emit('weatherdata', this.weather);
         
       },
   },

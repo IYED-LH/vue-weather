@@ -1,9 +1,15 @@
 <template>
+
+<div :class="typeof weather.main != 'undefined' && weather.main.temp <= 20 ? 'warm' : '' ">
+
   <main>
   
- <WeatherBox ref="weatherBox"/>
+ <WeatherBox @weatherdata="getWeatherData"/>
   
   </main>
+
+  </div>
+
 </template>
 
 <script>
@@ -15,13 +21,20 @@ export default {
   name: 'App',
   components: {
     WeatherBox,
+  }, 
+  data() {
+    return {
+      weather: {},
+    }
   },
+  methods: {
+    getWeatherData(weather) {
+      this.weather = weather;
+    }
+  },
+  
+  }
 
-   
-  
-  
-  
-}
 </script>
 
 <style>
