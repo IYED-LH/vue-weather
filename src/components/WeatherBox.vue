@@ -50,7 +50,7 @@ export default {
 
    async fetchWeather(city){
       try{
-        const response_geo = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=0d8595e3f9903e75e997a04c355182d4`);
+        const response_geo = await axios.get(`${this.api_geo}?q=${city}&appid=0d8595e3f9903e75e997a04c355182d4`);
 
         const city_name = response_geo.data[0].name;
         const lat = response_geo.data[0].lat;

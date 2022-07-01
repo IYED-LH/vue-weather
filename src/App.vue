@@ -1,6 +1,6 @@
 <template>
 
-<div :class="typeof weather.main != 'undefined' && weather.main.temp <= 20 ? 'warm' : '' ">
+<div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp <= 20 ? 'warm' : '' ">
 
   <main>
   
