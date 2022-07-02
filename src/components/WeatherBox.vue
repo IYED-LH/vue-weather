@@ -6,7 +6,10 @@
   
   <div class="weather-location" >
     <div class="location-name">{{weather.name}}, {{weather.sys.country}}</div>
-    <div class="location-date">{{time}}</div>
+
+    <div class="location-date">{{date}}, {{time}}</div>
+    
+    
 
   </div>
 
@@ -45,6 +48,7 @@ export default {
       api_time: 'https://api.timezonedb.com/v2.1/get-time-zone?key=N5YE68JUEOQX&format=json&by=position&lat=',
       
       weather : {},
+      date:'',
       time:'',
     
       }
@@ -66,12 +70,28 @@ export default {
         this.weather = response_weather.data;
         this.weather.name = city_name;
 
-        const response_time = await axios.get(`${this.api_time}${lat}&lng=${lon}`);
-        this.time = response_time.data.formatted}
+        
+         const response_time = await axios.get(`https://timeapi.io/api/Time/current/coordinate?latitude=${lat}&longitude=${lon}`);
+         this.time = response_time.data.time;
+
+         const d = new Date();
+         let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+         let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+         
+         let day = days[d.getDay()];
+         let date = d.getDate();
+         let month = months[d.getMonth()];
+         let year = d.getFullYear();
+        this.date = `${day}, ${date} ${month} ${year}`;
+         
+          
+           
+        }
 
         catch(error){
-          alert('City not found');
-        } 
+          alert('City not found');}
+
+ 
         
         this.$emit('weatherdata', this.weather);
         
