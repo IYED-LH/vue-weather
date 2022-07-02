@@ -14,14 +14,15 @@
   </div>
 
 
-<div class="weather-box">
+<div class="weather-box" >
     <div class="temp">{{Math.round(weather.main.temp)}}<span class="cel">°C</span>
     
-    <div class="weather-condition "><i class="fa-solid fa-cloud-rain"></i></div>
-    </div>
+    <div class="weather-condition" v-if="weather.weather[0].main == 'clouds'"> '"><i class="fa-solid fa-cloud"></i></div>
+    <div class="weather-condition" v-else><i class="fa-solid fa-sun"></i></div>
       
 </div>
   
+</div>
 </div>
 
 
@@ -50,6 +51,7 @@ export default {
       weather : {},
       date:'',
       time:'',
+      
     
       }
       
@@ -57,6 +59,7 @@ export default {
     
   methods:{
 
+  // Fetching the weather data from the API 
    async fetchWeather(city){
       try{
         const response_geo = await axios.get(`${this.api_geo}?q=${city}&appid=${this.api_key}`);
@@ -71,30 +74,27 @@ export default {
         this.weather.name = city_name;
 
         
+         // Getting the current time from the timeapi.io API.
          const response_time = await axios.get(`https://timeapi.io/api/Time/current/coordinate?latitude=${lat}&longitude=${lon}`);
          this.time = response_time.data.time;
 
+         
+         // Getting the current date and time and assigning it to the variable `date`
          const d = new Date();
          let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
          let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-         
          let day = days[d.getDay()];
          let date = d.getDate();
          let month = months[d.getMonth()];
          let year = d.getFullYear();
-        this.date = `${day}, ${date} ${month} ${year}`;
-         
-          
-           
-        }
+         this.date = `${day}, ${date} ${month} ${year}`;
+
+          }
 
         catch(error){
           alert('City not found');}
 
- 
-        
         this.$emit('weatherdata', this.weather);
-        
       },
   },
 

@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 import 'animate.css';
 import WeatherBox from './components/WeatherBox.vue' 
 
