@@ -132,6 +132,7 @@ mounted() {
 }
 .weather-box {
   text-align: center;
+  margin-top: 20px;
    
 }
 .temp {
@@ -139,7 +140,7 @@ mounted() {
   font-family: 'poppins', sans-serif;
   font-size: 98px;
   font-weight: 600;
-  border-radius: 50%; 
+  
   text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
 
 }
