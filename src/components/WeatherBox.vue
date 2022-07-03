@@ -12,7 +12,9 @@
 
 
 <div class="weather-box" >
+   
     <div class="temp">{{Math.round(weather.main.temp)}}<span class="cel">°C</span>
+    
     
     <div class="weather-condition" v-if="weather.weather[0].main == 'Clouds'"><i class="fa-solid fa-cloud"></i></div>
     <div class="weather-condition" v-else><i class="fa-solid fa-sun"></i></div>
