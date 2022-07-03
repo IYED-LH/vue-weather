@@ -19,25 +19,31 @@
     
     <div class="weather-condition" v-if="weather.weather[0].main == 'Clouds'"><i class="fa-solid fa-cloud"></i></div>
     <div class="weather-condition" v-else><i class="fa-solid fa-sun"></i></div>
+    
       
 </div>
+
+  <infoBox/>
   
 </div>
+
 </div>
 
 
 </template>
 
 <script>
-import 'animate.css';
 
 import SearchBox from './SearchBox.vue'
+import InfoBox from './InfoBox.vue'
 const axios = require('axios').default;
 
 export default {
   name: 'weatherBox',
   components: {
     SearchBox,
+    InfoBox,
+    
   },
     
   data() {

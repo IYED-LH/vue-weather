@@ -1,6 +1,6 @@
 <template>
 
-<div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp <= 20 ? 'warm' : '' ">
+<div id="app" :class="typeof weather.main != 'undefined' && weather.main.temp <= 18 ? 'warm' : '' ">
 
   <main>
   
@@ -40,6 +40,7 @@ export default {
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
 
 * {
   margin: 0;
@@ -53,7 +54,7 @@ body {
   background-image: url('./assets/summerbg.jpg');
   background-size: cover;
   background-position: bottom;
-  transition: 0.5s ease;
+  transition: 0.4s ease;
 }
 
 #app.warm {
