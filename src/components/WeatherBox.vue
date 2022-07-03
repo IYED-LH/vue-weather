@@ -8,9 +8,6 @@
     <div class="location-name">{{weather.name}}, {{weather.sys.country}}</div>
 
     <div class="location-date">{{date}}, {{time}}</div>
-    
-    
-
   </div>
 
 
@@ -23,7 +20,7 @@
       
 </div>
 
-  <infoBox/>
+  <infoBox :data="weather"/>
   
 </div>
 
@@ -58,7 +55,6 @@ export default {
       date:'',
       time:'',
       
-    
       }
       
     },
@@ -100,12 +96,15 @@ export default {
         catch(error){
           alert('City not found');}
 
+        // Emitting the weather data 
         this.$emit('weatherdata', this.weather);
+        
+
       },
   },
 
 mounted() {
-    this.fetchWeather('tunis');
+    this.fetchWeather('Tunis');
   },
 
   emits: ['weatherdata'],

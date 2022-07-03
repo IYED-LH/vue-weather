@@ -3,41 +3,41 @@
 <div class="wrapper" >
 
     <div class="circle">
-    <i class="fa-solid fa-wind"></i>
+    <i class="fa-solid fa-wind" title="wind speed"></i>
     <div class="inside-box">
-    <h1>14.7<span class="percent">K/h</span></h1>
+    <h1>{{data.wind.speed}}<span class="percent">K/h</span></h1>
     </div>
     </div>
     
 
 
     <div class="circle">
-    <i class="fa-solid fa-droplet"></i>
+    <i class="fa-solid fa-droplet" title="humidity"></i>
     <div class="inside-box">
-    <h1>100<span class="percent">%</span></h1>
+    <h1>{{data.main.humidity}}<span class="percent">%</span></h1>
     </div>
     </div>
 
     <div class="circle">
-    <i class="fa-solid fa-arrow-down-wide-short"></i>
+    <i class="fa-solid fa-arrow-down-wide-short" title="pressure"></i>
     <div class="inside-box">
-    <h1>1016<span class="percent">mb</span></h1>
+    <h1>{{data.main.pressure}}<span class="percent">mb</span></h1>
     </div>
     </div>
-
-    
-    
-    
-
-
 </div>
 
 </template>
+
 
 <script>
 
 export default{
     name: 'infoBox',
+    props: { 
+        data: Object,
+    },
+   
+   
 
 }
 
@@ -70,6 +70,7 @@ border-radius: 50%;
 justify-content: center;
 align-items: center;
 flex-direction: row;
+background-color: rgba(226, 226, 226, 0.016);
 box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 transition: 0.8s ;
 }
